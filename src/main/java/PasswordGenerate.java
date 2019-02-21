@@ -10,7 +10,9 @@ public class PasswordGenerate {
 
     private Random random = new Random();
 
-    public StringBuilder generate(int passwordSize){
+    public StringBuilder generate(int passwordSize) {
+
+        if (passwordSize < 8) throw new PasswordGenerateException();
 
         StringBuilder password = new StringBuilder();
         List<String> symbolList = new ArrayList<>(3);

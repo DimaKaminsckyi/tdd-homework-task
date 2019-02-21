@@ -8,14 +8,15 @@ public class PasswordGenerateTest {
     private StringBuilder passwordUnit;
 
     @Before
-    public void initialization() {
+    public void initialization(){
         unit = new PasswordGenerate();
         passwordUnit = unit.generate(10);
     }
 
     @Test
     public void whenGenerateReturnCorrectSize(){
-        Assert.assertEquals( 9 ,unit.generate(9).length());
+        int passwordSize = 10;
+        Assert.assertEquals( passwordSize ,passwordUnit.length());
     }
 
     @Test
@@ -33,4 +34,9 @@ public class PasswordGenerateTest {
         Assert.assertTrue(passwordUnit.toString().chars().anyMatch(Character::isDigit));
     }
 
+    @Test(expected = PasswordGenerateException.class)
+    public void checkCorrectPasswordSizeException(){
+        int passwordSize = 7;
+        unit.generate(passwordSize);
+    }
 }
