@@ -8,7 +8,7 @@ public class PasswordGenerateTest {
     private StringBuilder passwordUnit;
 
     @Before
-    public void initialization(){
+    public void initialization() {
         unit = new PasswordGenerate();
         passwordUnit = unit.generate(10);
     }
@@ -27,4 +27,10 @@ public class PasswordGenerateTest {
     public void passwordHasUpperRegisgter(){
         Assert.assertTrue(!passwordUnit.toString().equals(passwordUnit.toString().toLowerCase()));
     }
+
+    @Test
+    public void passwordHasDigitsSymbols(){
+        Assert.assertTrue(passwordUnit.toString().chars().anyMatch(Character::isDigit));
+    }
+
 }
